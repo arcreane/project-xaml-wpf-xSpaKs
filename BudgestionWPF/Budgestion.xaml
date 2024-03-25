@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="Budgestion" Height="450" Width="800">
     <Grid>
-        <Button Content="Voulez-vous créer un nouvel environnement de gestion de budget familial ?" Click="InitializeBudgestion"></Button>
+        <Button Grid.Row="0" x:Name="Start" Content="Créer un nouvel environnement familial de gestion de budget" Click="InitializeBudgestion"/>
+      
+        <StackPanel Grid.Row="1">
+            <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" Visibility="Collapsed" />
+            <TextBox x:Name="UsernameInput" Visibility="Collapsed" />
+            <Label x:Name="PasswordLabel" Content="Mot de passe :" Visibility="Collapsed" />
+            <TextBox x:Name="PasswordInput" Visibility="Collapsed" />
+        </StackPanel>
+
+        <Button Grid.Row="2" x:Name="submit" Width="200" Height="40" Content="Créer mon profil" Visibility="Collapsed" Click="Submit"/>
     </Grid>
 </Window>

@@ -33,6 +33,28 @@ namespace BudgestionWPF
 
         public void InitializeBudgestion(object sender, RoutedEventArgs e)
         {
+            Start.Visibility = Visibility.Collapsed;
+            UsernameLabel.Visibility = Visibility.Visible;
+            UsernameInput.Visibility = Visibility.Visible;
+            PasswordLabel.Visibility = Visibility.Visible;
+            PasswordInput.Visibility = Visibility.Visible;
+            submit.Visibility = Visibility.Visible;
+        }
+
+        public void Submit(object sender, RoutedEventArgs e)
+        {
+            String username = UsernameInput.Text;
+            String password = PasswordInput.Text;
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Veuillez saisir un nom d'utilisateur et un mot de passe.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            User newUser = new User(username, password);
+            this.users.Add(newUser);
+            this.currentUser = newUser;
 
         }
 
