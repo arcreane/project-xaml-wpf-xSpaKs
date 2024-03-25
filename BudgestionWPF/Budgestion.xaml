@@ -7,15 +7,17 @@
         mc:Ignorable="d"
         Title="Budgestion" Height="450" Width="800">
     <Grid>
-        <Button Grid.Row="0" x:Name="Start" Content="Créer un nouvel environnement familial de gestion de budget" Click="InitializeBudgestion"/>
+        <Button x:Name="Start" Content="Créer un nouvel environnement familial de gestion de budget" Click="initializeBudgestion"/>
       
-        <StackPanel Grid.Row="1">
+        <StackPanel>
             <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" Visibility="Collapsed" />
             <TextBox x:Name="UsernameInput" Visibility="Collapsed" />
             <Label x:Name="PasswordLabel" Content="Mot de passe :" Visibility="Collapsed" />
             <TextBox x:Name="PasswordInput" Visibility="Collapsed" />
+            <Button x:Name="submit" Width="200" Height="40" Content="Créer mon profil" Visibility="Collapsed" Click="createFirstUser"/>
         </StackPanel>
 
-        <Button Grid.Row="2" x:Name="submit" Width="200" Height="40" Content="Créer mon profil" Visibility="Collapsed" Click="Submit"/>
+
+        <Button x:Name="Budget" Width="200" Height="40" Content="Ajouter un budget à mon profil" Visibility="Collapsed" Click="budgetClick"/>
     </Grid>
 </Window>

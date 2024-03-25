@@ -31,7 +31,7 @@ namespace BudgestionWPF
 
         public List<User> users;
 
-        public void InitializeBudgestion(object sender, RoutedEventArgs e)
+        public void initializeBudgestion(object sender, RoutedEventArgs e)
         {
             Start.Visibility = Visibility.Collapsed;
             UsernameLabel.Visibility = Visibility.Visible;
@@ -41,7 +41,7 @@ namespace BudgestionWPF
             submit.Visibility = Visibility.Visible;
         }
 
-        public void Submit(object sender, RoutedEventArgs e)
+        public void createFirstUser(object sender, RoutedEventArgs e)
         {
             String username = UsernameInput.Text;
             String password = PasswordInput.Text;
@@ -58,13 +58,23 @@ namespace BudgestionWPF
 
         }
 
+
         /// <summary>
         /// @param String name 
         /// @param String password
         /// </summary>
-        public void connectUser(String name, String password)
+        public void connectUser(string name, string password)
         {
-            currentUser = new User(name, password);
+            foreach (User user in users)
+            {
+                if (user.name == name && user.password == password)
+                {
+                    this.currentUser = user;
+                    return;
+                }
+            }
+
+            MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.", "Erreur de connexion", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public void isUserConnected()
@@ -74,7 +84,7 @@ namespace BudgestionWPF
 
         public void disconnectUser()
         {
-            // TODO implement here
+            this.currentUser = null;
         }
 
         public void getUsers()
@@ -85,6 +95,15 @@ namespace BudgestionWPF
         public void getCurrentUser()
         {
             // TODO implement here
+        }
+
+        public void budgetClick(object sender, RoutedEventArgs e)
+        {
+            if (currentUser == null) 
+            {
+                MessageBox.Show("Veuillez vous connecter pour ajouter un budget", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
         }
     }
 }

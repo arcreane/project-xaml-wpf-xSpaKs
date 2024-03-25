@@ -48,6 +48,12 @@ namespace BudgestionWPF
         /// @param float amount 
         /// @param Budget budget
         /// </summary>
+        
+        public void setMoney(float money)
+        {
+            this.money = money;
+        }
+
         public void spendMoney(float amount, Budget budget)
         {
             // TODO implement here
