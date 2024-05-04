@@ -24,7 +24,8 @@ namespace BudgestionWPF
         public Budgestion()
         {
             InitializeComponent();
-            
+            this.users = new List<User>();
+
         }
 
         public User currentUser;
@@ -34,11 +35,7 @@ namespace BudgestionWPF
         public void initializeBudgestion(object sender, RoutedEventArgs e)
         {
             Start.Visibility = Visibility.Collapsed;
-            UsernameLabel.Visibility = Visibility.Visible;
-            UsernameInput.Visibility = Visibility.Visible;
-            PasswordLabel.Visibility = Visibility.Visible;
-            PasswordInput.Visibility = Visibility.Visible;
-            submit.Visibility = Visibility.Visible;
+            ProfileCreationPanel.Visibility = Visibility.Visible;
         }
 
         public void createFirstUser(object sender, RoutedEventArgs e)
@@ -52,10 +49,15 @@ namespace BudgestionWPF
                 return;
             }
 
+
             User newUser = new User(username, password);
             this.users.Add(newUser);
             this.currentUser = newUser;
 
+            ProfileCreationPanel.Visibility = Visibility.Collapsed;
+            UserFrame.Visibility = Visibility.Visible;
+            UserFrame.Content = this.currentUser;
+            
         }
 
 

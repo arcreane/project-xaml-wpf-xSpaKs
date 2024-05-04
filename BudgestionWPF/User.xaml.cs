@@ -27,6 +27,8 @@ namespace BudgestionWPF
             
             this.name = name;
             this.password = password;
+
+            UsernameLabel.Content = "Nom d'utilisateur : " + name;
         }
 
         public int id;
