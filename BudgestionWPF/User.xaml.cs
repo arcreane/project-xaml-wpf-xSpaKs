@@ -50,7 +50,25 @@ namespace BudgestionWPF
         /// @param float amount 
         /// @param Budget budget
         /// </summary>
-        
+        /// 
+        private void AddBudget(object sender, RoutedEventArgs e)
+        {
+            AddBudgetPanel.Visibility = Visibility.Visible;
+        }
+
+        private void ValidateBudget(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelBudget(object sender, RoutedEventArgs e) 
+        {
+            AddBudgetPanel.Visibility = Visibility.Collapsed;
+            NameBudgetLabel.Content = "";
+            AmountBudgetLabel.Content = "";
+            
+        }
+
         public void setMoney(float money)
         {
             this.money = money;

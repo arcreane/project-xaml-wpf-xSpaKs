@@ -14,7 +14,7 @@
             <TextBox x:Name="UsernameInput" />
             <Label x:Name="PasswordLabel" Content="Mot de passe :" />
             <TextBox x:Name="PasswordInput" />
-            <Button x:Name="submit" Width="200" Height="40" Content="Créer mon profil" Click="createFirstUser"/>
+            <Button x:Name="ProfilCreationInput" Width="200" Height="40" Content="Créer mon profil" Click="createFirstUser"/>
         </StackPanel>
 
 
