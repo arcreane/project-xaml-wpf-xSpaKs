@@ -9,6 +9,10 @@
       Title="Budget">
 
     <Grid>
-        
+        <StackPanel>
+            <Label x:Name="NameBudgetLabel" Content="Budget :" />
+            <Label x:Name="AmountBudgetLabel" Content="Montant mensuel :" />
+            <Label x:Name="CurrentAmountBudgetLabel" Content="Montant actuel :" />
+        </StackPanel>
     </Grid>
 </Page>

@@ -10,7 +10,7 @@
     <StackPanel>
         <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" />
 
-        <Button Content="Ajouter un budget" Click="AddBudget"/>
+        <Button x:Name="AddBudgetButton" Content="Ajouter un budget" Click="AddBudget"/>
 
         <StackPanel x:Name="AddBudgetPanel" Visibility="Collapsed">
             <Label x:Name="NameBudgetLabel" Content="Nom du budget :" />
@@ -20,6 +20,10 @@
             <Button Content="Ajouter le budget" Click="ValidateBudget"/>
             <Button Content="Annuler" Click="CancelBudget"/>
         </StackPanel>
+
+        
     </StackPanel>
+
+    
 
 </Page>

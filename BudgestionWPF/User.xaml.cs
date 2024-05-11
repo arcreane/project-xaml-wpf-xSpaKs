@@ -53,19 +53,35 @@ namespace BudgestionWPF
         /// 
         private void AddBudget(object sender, RoutedEventArgs e)
         {
+            AddBudgetButton.Visibility = Visibility.Collapsed;
             AddBudgetPanel.Visibility = Visibility.Visible;
         }
 
         private void ValidateBudget(object sender, RoutedEventArgs e)
         {
+            String name = NameBudgetInput.Text;
+            String amount = AmountBudgetInput.Text;
 
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(amount))
+            {
+                MessageBox.Show("Veuillez saisir un nom de budget et un montant.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            float amountFloat = float.Parse(amount);
+
+            Budget newBudget = new Budget(name, amountFloat);
+            this.budgets.Add(newBudget);
+
+            AddBudgetPanel.Visibility = Visibility.Collapsed;
         }
 
         private void CancelBudget(object sender, RoutedEventArgs e) 
         {
+            AddBudgetButton.Visibility = Visibility.Visible;
             AddBudgetPanel.Visibility = Visibility.Collapsed;
-            NameBudgetLabel.Content = "";
-            AmountBudgetLabel.Content = "";
+            NameBudgetInput.Text = "";
+            AmountBudgetInput.Text = "";
             
         }
 

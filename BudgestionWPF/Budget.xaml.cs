@@ -21,9 +21,16 @@ namespace BudgestionWPF
     /// </summary>
     public partial class Budget : Page
     {
-        public Budget()
+        public Budget(String name, float amount)
         {
             InitializeComponent();
+            this.name = name;
+            this.amount = amount;
+            this.currentAmount = amount;
+
+            NameBudgetLabel.Content += " " + name;
+            AmountBudgetLabel.Content += " " + amount;
+            CurrentAmountBudgetLabel.Content += " " + amount + " (" + this.currentAmount/this.amount + ")";
         }
 
         public String name;
@@ -36,10 +43,6 @@ namespace BudgestionWPF
         /// @param String name 
         /// @param float amount
         /// </summary>
-        public void __init__(String name, float amount)
-        {
-            // TODO implement here
-        }
 
         /// <summary>
         /// @param amount
