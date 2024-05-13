@@ -35,7 +35,7 @@ namespace BudgestionWPF
         public void initializeBudgestion(object sender, RoutedEventArgs e)
         {
             Start.Visibility = Visibility.Collapsed;
-            ProfileCreationPanel.Visibility = Visibility.Visible;
+            ProfileFormPanel.Visibility = Visibility.Visible;
         }
 
         public void createFirstUser(object sender, RoutedEventArgs e)
@@ -54,9 +54,11 @@ namespace BudgestionWPF
             this.users.Add(newUser);
             this.currentUser = newUser;
 
-            ProfileCreationPanel.Visibility = Visibility.Collapsed;
+            ProfileFormPanel.Visibility = Visibility.Collapsed;
             UserFrame.Visibility = Visibility.Visible;
             UserFrame.Content = this.currentUser;
+
+            DisconnectButton.Visibility = Visibility.Visible;
             
         }
 
@@ -65,13 +67,19 @@ namespace BudgestionWPF
         /// @param String name 
         /// @param String password
         /// </summary>
-        public void connectUser(string name, string password)
+        public void connectUser(object sender, RoutedEventArgs e)
         {
+            String name = UsernameInput.Text;
+            String password = PasswordInput.Text;
+
             foreach (User user in users)
             {
                 if (user.name == name && user.password == password)
                 {
                     this.currentUser = user;
+                    UserFrame.Content = this.currentUser;
+                    DisconnectButton.Visibility = Visibility.Visible;
+                    ProfileFormPanel.Visibility = Visibility.Collapsed;
                     return;
                 }
             }
@@ -84,9 +92,12 @@ namespace BudgestionWPF
             // TODO implement here
         }
 
-        public void disconnectUser()
+        public void disconnectUser(object sender, RoutedEventArgs e)
         {
             this.currentUser = null;
+            UserFrame.Content = null;
+            ProfileFormPanel.Visibility= Visibility.Visible;
+            DisconnectButton.Visibility = Visibility.Collapsed;
         }
 
         public void getUsers()

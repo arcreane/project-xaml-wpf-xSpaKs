@@ -29,6 +29,10 @@ namespace BudgestionWPF
             this.password = password;
 
             UsernameLabel.Content = "Nom d'utilisateur : " + name;
+
+            budgets = new List<Budget>();
+
+            DataContext = this;
         }
 
         public int id;

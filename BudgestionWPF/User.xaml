@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="User" Height="450" Width="800">
 
-    <StackPanel>
+    <StackPanel Margin="50">
         <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" />
 
         <Button x:Name="AddBudgetButton" Content="Ajouter un budget" Click="AddBudget"/>
@@ -21,7 +21,6 @@
             <Button Content="Annuler" Click="CancelBudget"/>
         </StackPanel>
 
-        
     </StackPanel>
 
     

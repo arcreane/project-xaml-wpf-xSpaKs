@@ -6,19 +6,22 @@
         xmlns:local="clr-namespace:BudgestionWPF"
         mc:Ignorable="d"
         Title="Budgestion" Height="450" Width="800">
+    
     <Grid>
-        <Button x:Name="Start" Content="Créer un nouvel environnement familial de gestion de budget" Click="initializeBudgestion"/>
-
-        <StackPanel x:Name="ProfileCreationPanel" Visibility="Collapsed">
-            <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" />
-            <TextBox x:Name="UsernameInput" />
-            <Label x:Name="PasswordLabel" Content="Mot de passe :" />
-            <TextBox x:Name="PasswordInput" />
-            <Button x:Name="ProfilCreationInput" Width="200" Height="40" Content="Créer mon profil" Click="createFirstUser"/>
+        <StackPanel x:Name="AuthenticationPanel" Margin="50">
+            <StackPanel x:Name="ProfileFormPanel" Visibility="Collapsed">
+                <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" />
+                <TextBox x:Name="UsernameInput" />
+                <Label x:Name="PasswordLabel" Content="Mot de passe :" />
+                <TextBox x:Name="PasswordInput" />
+                <Button x:Name="ProfilCreationInput" Content="Créer mon profil" Click="createFirstUser"/>
+                <Button x:Name="ProfilLoginInput" Content="Se connecter" Click="connectUser"/>
+            </StackPanel>
+            <Button x:Name="Start" Content="Créer un nouvel environnement familial de gestion de budget" Click="initializeBudgestion"/>
         </StackPanel>
 
-
         <Frame x:Name="UserFrame" NavigationUIVisibility="Hidden"/>
-        
+
+        <Button x:Name="DisconnectButton" Content="Se déconnecter" Click="disconnectUser" Visibility="Hidden" Width="200" Height="35"/>
     </Grid>
 </Window>
