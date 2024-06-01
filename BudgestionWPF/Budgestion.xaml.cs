@@ -40,8 +40,8 @@ namespace BudgestionWPF
 
         public void createFirstUser(object sender, RoutedEventArgs e)
         {
-            String username = UsernameInput.Text;
-            String password = PasswordInput.Text;
+            string username = UsernameInput.Text;
+            string password = PasswordInput.Text;
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -54,6 +54,8 @@ namespace BudgestionWPF
             this.users.Add(newUser);
             this.currentUser = newUser;
 
+            UsernameInput.Clear();
+            PasswordInput.Clear();
             ProfileFormPanel.Visibility = Visibility.Collapsed;
             UserFrame.Visibility = Visibility.Visible;
             UserFrame.Content = this.currentUser;
@@ -69,8 +71,8 @@ namespace BudgestionWPF
         /// </summary>
         public void connectUser(object sender, RoutedEventArgs e)
         {
-            String name = UsernameInput.Text;
-            String password = PasswordInput.Text;
+            string name = UsernameInput.Text;
+            string password = PasswordInput.Text;
 
             foreach (User user in users)
             {
@@ -78,6 +80,8 @@ namespace BudgestionWPF
                 {
                     this.currentUser = user;
                     UserFrame.Content = this.currentUser;
+                    UsernameInput.Clear();
+                    PasswordInput.Clear();
                     DisconnectButton.Visibility = Visibility.Visible;
                     ProfileFormPanel.Visibility = Visibility.Collapsed;
                     return;

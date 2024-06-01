@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace BudgestionWPF
     /// </summary>
     public partial class User : Page
     {
-        public User(String name, String password)
+        public User(string name, string password)
         {
             InitializeComponent();
             
@@ -30,18 +31,30 @@ namespace BudgestionWPF
 
             UsernameLabel.Content = "Nom d'utilisateur : " + name;
 
-            budgets = new List<Budget>();
+            this.budgets = new ObservableCollection<Budget>();
 
-            DataContext = this;
+            this.DataContext = this;
+            BudgetsListBox.ItemsSource = budgets;
+
+            if (budgets.Count ==  0) 
+            { 
+                BudgetsListBox.Visibility = Visibility.Collapsed;
+                BudgetListEmpty.Visibility = Visibility.Visible;
+            }
+            else
+            { 
+                BudgetsListBox.Visibility= Visibility.Visible; 
+                BudgetListEmpty.Visibility= Visibility.Collapsed;
+            }
         }
 
         public int id;
 
-        public String name;
+        public string name;
 
-        public String password;
+        public string password;
 
-        public List<Budget> budgets;
+        public ObservableCollection<Budget> budgets;
 
         public float money;
 
@@ -63,8 +76,8 @@ namespace BudgestionWPF
 
         private void ValidateBudget(object sender, RoutedEventArgs e)
         {
-            String name = NameBudgetInput.Text;
-            String amount = AmountBudgetInput.Text;
+            string name = NameBudgetInput.Text;
+            string amount = AmountBudgetInput.Text;
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(amount))
             {
@@ -72,12 +85,21 @@ namespace BudgestionWPF
                 return;
             }
 
-            float amountFloat = float.Parse(amount);
+            float amountFloat;
+            if (float.TryParse(amount, out amountFloat)) {
+                Budget newBudget = new Budget(name, amountFloat);
+                this.budgets.Add(newBudget);
 
-            Budget newBudget = new Budget(name, amountFloat);
-            this.budgets.Add(newBudget);
-
-            AddBudgetPanel.Visibility = Visibility.Collapsed;
+                BudgetsListBox.Items.Refresh();
+                AddBudgetPanel.Visibility = Visibility.Collapsed;
+                AddBudgetButton.Visibility = Visibility.Visible;
+                BudgetsListBox.Visibility = Visibility.Visible;
+                BudgetListEmpty.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez saisir une valeur numérique pour le montant du budget", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CancelBudget(object sender, RoutedEventArgs e) 
@@ -87,6 +109,63 @@ namespace BudgestionWPF
             NameBudgetInput.Text = "";
             AmountBudgetInput.Text = "";
             
+        }
+
+        private void ModifyBudget(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is Budget selectedBudget)
+            {
+                ModifyBudgetNameTextBox.Text = selectedBudget.name;
+                ModifyBudgetAmountTextBox.Text = selectedBudget.amount.ToString();
+                ModifyBudgetPanel.Visibility = Visibility.Visible;
+                
+            }
+        }
+
+        private void SaveModifiedBudget(object sender, RoutedEventArgs e)
+        {
+
+            float number = 0;
+            if (float.TryParse(ModifyBudgetAmountTextBox.Text, out number))
+            {
+                var budget = this.budgets.FirstOrDefault(b => b.name == ModifyBudgetNameTextBox.Text);
+                if (budget != null)
+                {
+                    budget.amount = number;
+                    budget.currentAmount = number;
+                    ModifyBudgetPanel.Visibility = Visibility.Hidden;
+
+                    BudgetsListBox.Items.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Aucun budget correspondant n'a été trouvé.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez saisir une valeur numérique pour le montant du budget", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+           
+
+        private void CancelModification(object sender, RoutedEventArgs e)
+        {
+            ModifyBudgetPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void DeleteBudget(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is Budget budget)
+            {
+                budgets.Remove(budget);
+            }
+
+            if (budgets.Count == 0)
+            {
+                BudgetsListBox.Visibility = Visibility.Collapsed;
+                BudgetListEmpty.Visibility = Visibility.Visible;
+            }
         }
 
         public void setMoney(float money)

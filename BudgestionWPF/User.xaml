@@ -15,11 +15,42 @@
         <StackPanel x:Name="AddBudgetPanel" Visibility="Collapsed">
             <Label x:Name="NameBudgetLabel" Content="Nom du budget :" />
             <TextBox x:Name="NameBudgetInput" />
-            <Label x:Name="AmountBudgetLabel" Content="Montant du budget :" />
+            <Label x:Name="AmountBudgetLabel" Content="Montant du budget (en euros) :" />
             <TextBox x:Name="AmountBudgetInput" />
             <Button Content="Ajouter le budget" Click="ValidateBudget"/>
             <Button Content="Annuler" Click="CancelBudget"/>
         </StackPanel>
+
+        
+        <StackPanel x:Name="BudgetListPanel">
+            <Label Content="Liste des budgets :" />
+            <Label x:Name="BudgetListEmpty" Content="Vous n'avez aucun budget actif"/>
+            <ListBox x:Name="BudgetsListBox" ItemsSource="{Binding budgets}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding name}" Margin="5"/>
+                            <TextBlock Text="{Binding amount}" Margin="5"/>
+                            <Button Content="Modifier" Click="ModifyBudget" CommandParameter="{Binding}"/>
+                            <Button Content="Supprimer" Click="DeleteBudget" CommandParameter="{Binding}"/>
+                            
+                        </StackPanel>
+                    </DataTemplate>
+                    
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel x:Name="ModifyBudgetPanel" Visibility="Hidden" Margin="10">
+            <Label Content="Modifier le budget"/>
+            <Label Content="Nom du budget :"/>
+            <TextBlock x:Name="ModifyBudgetNameTextBox" Width="200" Margin="0,0,0,10"/>
+            <Label Content="Montant du budget (en euros) :"/>
+            <TextBox x:Name="ModifyBudgetAmountTextBox" Width="200" Margin="0,0,0,10"/>
+            <Button Content="Sauvegarder" Click="SaveModifiedBudget"/>
+            <Button Content="Annuler" Click="CancelModification"/>
+        </StackPanel>
+
 
     </StackPanel>
 

@@ -8,6 +8,11 @@
         Title="Budgestion" Height="450" Width="800">
     
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
         <StackPanel x:Name="AuthenticationPanel" Margin="50">
             <StackPanel x:Name="ProfileFormPanel" Visibility="Collapsed">
                 <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" />
@@ -22,6 +27,6 @@
 
         <Frame x:Name="UserFrame" NavigationUIVisibility="Hidden"/>
 
-        <Button x:Name="DisconnectButton" Content="Se déconnecter" Click="disconnectUser" Visibility="Hidden" Width="200" Height="35"/>
+        <Button x:Name="DisconnectButton" Content="Se déconnecter" Click="disconnectUser" Visibility="Hidden" Width="200" Height="35" Grid.Row="1" VerticalAlignment="Bottom" Margin="10"/>
     </Grid>
 </Window>
