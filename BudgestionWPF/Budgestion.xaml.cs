@@ -41,7 +41,7 @@ namespace BudgestionWPF
         public void createFirstUser(object sender, RoutedEventArgs e)
         {
             string username = UsernameInput.Text;
-            string password = PasswordInput.Text;
+            string password = PasswordInput.Password;
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -72,7 +72,7 @@ namespace BudgestionWPF
         public void connectUser(object sender, RoutedEventArgs e)
         {
             string name = UsernameInput.Text;
-            string password = PasswordInput.Text;
+            string password = PasswordInput.Password;
 
             foreach (User user in users)
             {

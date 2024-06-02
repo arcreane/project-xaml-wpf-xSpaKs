@@ -111,6 +111,41 @@ namespace BudgestionWPF
             
         }
 
+        private void AddExpense(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is Budget selectedBudget)
+            {
+                AddExpenseNameTextBox.Text = selectedBudget.name;
+                AddExpenseAmountTextBox.Text = selectedBudget.amount.ToString();
+                AddExpensePanel.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void SaveExpense(object sender, RoutedEventArgs e)
+        {
+
+            float number = 0;
+            if (float.TryParse(AddExpenseAmountTextBox.Text, out number))
+            {
+                var budget = this.budgets.FirstOrDefault(b => b.name == AddExpenseNameTextBox.Text);
+                if (budget != null)
+                {
+                    budget.addExpense(number);
+                    AddExpensePanel.Visibility = Visibility.Hidden;
+
+                    BudgetsListBox.Items.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Aucun budget correspondant n'a été trouvé.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez saisir une valeur numérique pour le montant du budget", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void ModifyBudget(object sender, RoutedEventArgs e)
         {
             if (sender is Button button && button.CommandParameter is Budget selectedBudget)

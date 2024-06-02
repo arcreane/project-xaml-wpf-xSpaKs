@@ -10,15 +10,15 @@
     <StackPanel Margin="50">
         <Label x:Name="UsernameLabel" Content="Nom d'utilisateur :" />
 
-        <Button x:Name="AddBudgetButton" Content="Ajouter un budget" Click="AddBudget"/>
+        <Button x:Name="AddBudgetButton" Content="Ajouter un budget" Click="AddBudget" Padding="5" Margin="5"/>
 
         <StackPanel x:Name="AddBudgetPanel" Visibility="Collapsed">
             <Label x:Name="NameBudgetLabel" Content="Nom du budget :" />
-            <TextBox x:Name="NameBudgetInput" />
+            <TextBox x:Name="NameBudgetInput" Padding="5" Margin="5"/>
             <Label x:Name="AmountBudgetLabel" Content="Montant du budget (en euros) :" />
-            <TextBox x:Name="AmountBudgetInput" />
-            <Button Content="Ajouter le budget" Click="ValidateBudget"/>
-            <Button Content="Annuler" Click="CancelBudget"/>
+            <TextBox x:Name="AmountBudgetInput" Padding="5" Margin="5"/>
+            <Button Content="Ajouter le budget" Click="ValidateBudget" Padding="5" Margin="5"/>
+            <Button Content="Annuler" Click="CancelBudget" Padding="5" Margin="5"/>
         </StackPanel>
 
         
@@ -29,10 +29,11 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding name}" Margin="5"/>
-                            <TextBlock Text="{Binding amount}" Margin="5"/>
-                            <Button Content="Modifier" Click="ModifyBudget" CommandParameter="{Binding}"/>
-                            <Button Content="Supprimer" Click="DeleteBudget" CommandParameter="{Binding}"/>
+                            <TextBlock Text="{Binding name}"  Padding="5" Margin="5"/>
+                            <TextBlock Text="{Binding currentAmount}"  Padding="5" Margin="5"/>
+                            <Button Content="Ajouter une dépense" Click="AddExpense" Padding="5" Margin="5" CommandParameter="{Binding}"/>
+                            <Button Content="Modifier" Click="ModifyBudget" Padding="5" Margin="5" CommandParameter="{Binding}"/>
+                            <Button Content="Supprimer" Click="DeleteBudget" Padding="5" Margin="5" CommandParameter="{Binding}"/>
                             
                         </StackPanel>
                     </DataTemplate>
@@ -41,14 +42,42 @@
             </ListBox>
         </StackPanel>
 
-        <StackPanel x:Name="ModifyBudgetPanel" Visibility="Hidden" Margin="10">
-            <Label Content="Modifier le budget"/>
-            <Label Content="Nom du budget :"/>
-            <TextBlock x:Name="ModifyBudgetNameTextBox" Width="200" Margin="0,0,0,10"/>
-            <Label Content="Montant du budget (en euros) :"/>
-            <TextBox x:Name="ModifyBudgetAmountTextBox" Width="200" Margin="0,0,0,10"/>
-            <Button Content="Sauvegarder" Click="SaveModifiedBudget"/>
-            <Button Content="Annuler" Click="CancelModification"/>
+        <StackPanel x:Name="AddExpensePanel" Visibility="Hidden" Orientation="Vertical">
+            <Label Content="Ajouter une dépense" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Nom du budget :"/>
+                <TextBlock x:Name="AddExpenseNameTextBox" Width="200" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Montant de la dépense (en euros) :"/>
+                <TextBox x:Name="AddExpenseAmountTextBox" Width="200" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Sauvegarder" Click="SaveExpense" Padding="5" Margin="5"/>
+                <Button Content="Annuler" Click="CancelModification" Padding="5" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="ModifyBudgetPanel" Visibility="Hidden" Orientation="Vertical">
+            <Label Content="Modifier le budget" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Nom du budget :"/>
+                <TextBlock x:Name="ModifyBudgetNameTextBox" Width="200" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Montant du budget (en euros) :"/>
+                <TextBox x:Name="ModifyBudgetAmountTextBox" Width="200" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Sauvegarder" Click="SaveModifiedBudget" Padding="5" Margin="5"/>
+                <Button Content="Annuler" Click="CancelModification" Padding="5" Margin="5"/>
+            </StackPanel>
         </StackPanel>
 
 

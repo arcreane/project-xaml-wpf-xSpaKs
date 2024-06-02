@@ -38,9 +38,16 @@ namespace BudgestionWPF
         /// <summary>
         /// @param amount
         /// </summary>
-        public void addExpense(float amount)
+        public void addExpense(float _amount)
         {
-            // TODO implement here
+            if (amount > 0)
+            {
+                this.currentAmount -= _amount;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez ajouter une dépense supérieure à 0.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void getName()
