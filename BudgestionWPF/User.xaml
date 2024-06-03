@@ -42,7 +42,7 @@
             </ListBox>
         </StackPanel>
 
-        <StackPanel x:Name="AddExpensePanel" Visibility="Hidden" Orientation="Vertical">
+        <StackPanel x:Name="AddExpensePanel" Visibility="Collapsed" Orientation="Vertical">
             <Label Content="Ajouter une dépense" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -61,7 +61,7 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel x:Name="ModifyBudgetPanel" Visibility="Hidden" Orientation="Vertical">
+        <StackPanel x:Name="ModifyBudgetPanel" Visibility="Collapsed" Orientation="Vertical">
             <Label Content="Modifier le budget" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">

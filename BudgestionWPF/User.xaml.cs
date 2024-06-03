@@ -118,6 +118,7 @@ namespace BudgestionWPF
                 AddExpenseNameTextBox.Text = selectedBudget.name;
                 AddExpenseAmountTextBox.Text = selectedBudget.amount.ToString();
                 AddExpensePanel.Visibility = Visibility.Visible;
+                ModifyBudgetPanel.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -131,7 +132,7 @@ namespace BudgestionWPF
                 if (budget != null)
                 {
                     budget.addExpense(number);
-                    AddExpensePanel.Visibility = Visibility.Hidden;
+                    AddExpensePanel.Visibility = Visibility.Collapsed;
 
                     BudgetsListBox.Items.Refresh();
                 }
@@ -153,7 +154,7 @@ namespace BudgestionWPF
                 ModifyBudgetNameTextBox.Text = selectedBudget.name;
                 ModifyBudgetAmountTextBox.Text = selectedBudget.amount.ToString();
                 ModifyBudgetPanel.Visibility = Visibility.Visible;
-                
+                AddExpensePanel.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -168,7 +169,7 @@ namespace BudgestionWPF
                 {
                     budget.amount = number;
                     budget.currentAmount = number;
-                    ModifyBudgetPanel.Visibility = Visibility.Hidden;
+                    ModifyBudgetPanel.Visibility = Visibility.Collapsed;
 
                     BudgetsListBox.Items.Refresh();
                 }
@@ -186,7 +187,8 @@ namespace BudgestionWPF
 
         private void CancelModification(object sender, RoutedEventArgs e)
         {
-            ModifyBudgetPanel.Visibility = Visibility.Hidden;
+            ModifyBudgetPanel.Visibility = Visibility.Collapsed;
+            AddExpensePanel.Visibility = Visibility.Collapsed;
         }
 
         private void DeleteBudget(object sender, RoutedEventArgs e)
